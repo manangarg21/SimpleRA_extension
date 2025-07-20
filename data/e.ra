@@ -1,0 +1,18 @@
+LOAD STUDENTS
+LOAD MARKS
+
+RENAME stud_id TO student_id FROM MARKS
+
+CROSSED <- CROSS STUDENTS MARKS
+
+TMP0 <- SELECT stud_id == student_id FROM CROSSED
+
+TMP1 <- SELECT stud_sex == 1 FROM TMP0
+
+TMP2 <- SELECT advisor_id == 1 FROM TMP1
+
+TMP3 <- SELECT maths_marks > 70 FROM TMP2
+
+FEM <- PROJECT stud_id, maths_marks FROM TMP3
+
+PRINT FEM
